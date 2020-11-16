@@ -215,7 +215,7 @@ In the `app.js`the basic set up is already done and all static files are served 
 npm install express-react-views react react-dom
 
 # Also install mongoose and dotenv
-npm install --save mongoose dotenv
+npm install mongoose dotenv
 ```
 
 
