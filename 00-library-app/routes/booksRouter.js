@@ -34,6 +34,34 @@ booksRouter.get("/", (req, res, next) => {
      .catch((err) => console.log(err));
   });
   
+  booksRouter.post("/edit", (req, res, next) => {
+    const { bookid } = req.query;
+    const { title, author, description, rating } = req.body;
+  
+    Book.findByIdAndUpdate(
+      bookid,
+      { title, author, description, rating },
+      { new: true }
+      
+    )
+      .then((updatedBook) => {
+        console.log("book document after the update", updatedBook);
+        res.redirect("/books");
+      })
+      .catch((error) => console.error(error));
+  });
+
+  booksRouter.get("/details/:bookId", (req, res, next) => {
+    const { bookId } = req.params;
+  
+    Book.findById(bookId)
+      .then((oneBook) => {
+        const props = { oneBook: oneBook };
+  
+        res.render("BookDetails", props);
+      })
+      .catch((err) => console.log("Error retrieving book details: ", err));
+  });
   
 
 module.exports = booksRouter;
