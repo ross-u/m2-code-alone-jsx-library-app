@@ -23,6 +23,17 @@ booksRouter.get("/", (req, res, next) => {
       })
       .catch((err) => console.log(err));
   });
+
+  booksRouter.get("/edit", (req, res, next) => {
+    const {bookid} = req.query;
+    Book.findOne({_is:bookid})
+     .then((oneBook) => {
+       const props = {oneBook: oneBook};
+       res.render("EditBook", props);
+     })
+     .catch((err) => console.log(err));
+  });
+  
   
 
 module.exports = booksRouter;
