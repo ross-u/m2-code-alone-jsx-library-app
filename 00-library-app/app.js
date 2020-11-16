@@ -10,6 +10,7 @@ const mongoose = require("mongoose");
 const erv = require ("express-react-views")
 
 const booksRouter = require("./routes/booksRouter");
+const authorsRouter = require("./routes/authorsRouter");
 
 const DB_NAME = "library";
 
@@ -49,6 +50,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use("/books", booksRouter);
+app.use("/authors", authorsRouter); 
 
 //ROUTES
 app.get("/", (req, res, next) => {

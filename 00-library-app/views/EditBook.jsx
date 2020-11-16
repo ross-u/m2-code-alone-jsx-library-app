@@ -1,7 +1,8 @@
 const React = require("react");
 const Layout = require("./Layout");
+const AddAuthor = require('./components/AddAuthor');
 
-function EditBook(props) {
+function BookEdit(props) {
   return (
     <Layout>
       <form action={`/books/edit?bookid=${props.oneBook._id}`} method="POST">
@@ -29,8 +30,17 @@ function EditBook(props) {
           EDIT
         </button>
       </form>
+
+
+
+      <h3>Add An Author:</h3>                
+
+      <AddAuthor 														 
+        	idOfTheBook={props.oneBook._id} 		
+       />
+
     </Layout>
   );
 }
 
-module.exports = EditBook;
+module.exports = BookEdit;
