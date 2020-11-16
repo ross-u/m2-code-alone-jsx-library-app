@@ -55,6 +55,7 @@ booksRouter.get("/", (req, res, next) => {
     const { bookId } = req.params;
   
     Book.findById(bookId)
+      .populate("authors")
       .then((oneBook) => {
         const props = { oneBook: oneBook };
   
@@ -62,6 +63,7 @@ booksRouter.get("/", (req, res, next) => {
       })
       .catch((err) => console.log("Error retrieving book details: ", err));
   });
+
   
 
 module.exports = booksRouter;
