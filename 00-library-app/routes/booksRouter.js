@@ -1,6 +1,8 @@
 const express = require("express");
 const booksRouter = express.Router();
 
+const Book = require("./../models/Book.model");
+
 booksRouter.get("/", (req, res, next) => {
     Book.find()
     .then((allBooksFromDB) =>{
@@ -12,6 +14,14 @@ booksRouter.get("/", (req, res, next) => {
 
   booksRouter.get("/add", function (req, res, next){
     res.render("AddBook");
+  });
+
+  booksRouter.post("/add", (req, res, next) => {
+    Book.create({ title, author, description, rating })
+      .then((book) => {
+        res.redirect("/books");
+      })
+      .catch((err) => console.log(err));
   });
   
 
